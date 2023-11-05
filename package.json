@@ -11,7 +11,8 @@
     "php-parser": "./run.js"
   },
   "scripts": {
-    "test": "node test/index.js"
+    "test": "node test/index.js",
+    "release": "npm publish --access public"
   },
   "keywords": [],
   "author": "",
