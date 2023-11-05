@@ -1,0 +1,22 @@
+{
+  "name": "@tangible/php-parser",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "bin": {
+    "php-parser": "./run.js"
+  },
+  "scripts": {
+    "test": "node test/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@php-wasm/node": "^0.3.1"
+  }
+}
