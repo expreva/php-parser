@@ -2,10 +2,16 @@
 
 This is a standalone library to parse PHP in Node.js. It bundles a PHP runtime compiled to WebAssembly, so it doesn't depend on PHP being installed on the local system.
 
+## Install
+
+```sh
+npm install @expreva/php-parser
+```
+
 ## Usage
 
 ```js
-import { createPhp } from '@tangible/php-parser'
+import { createPhp } from '@expreva/php-parser'
 
 await php = await createPhp()
 

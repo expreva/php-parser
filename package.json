@@ -1,8 +1,8 @@
 {
-  "name": "@tangible/php-parser",
+  "name": "@expreva/php-parser",
   "type": "module",
   "version": "1.0.0",
-  "description": "",
+  "description": "Standalone library to parse PHP in Node.js using a PHP runtime compiled to WebAssembly",
   "main": "index.js",
   "directories": {
     "lib": "lib"
