@@ -1,6 +1,7 @@
 {
   "name": "@expreva/php-parser",
   "type": "module",
+  "version": "1.1.0",
   "description": "Standalone library to parse PHP in Node.js using a PHP runtime compiled to WebAssembly",
   "homepage": "https://github.com/expreva/php-parser",
   "repository": "git@github.com:expreva/php-parser.git",
