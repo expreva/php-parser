@@ -1,38 +1,35 @@
-import { writeFileSync, existsSync, mkdtempSync } from 'fs'
-import { rootCertificates } from 'tls'
-
 import path, { dirname } from 'path'
 import { fileURLToPath } from 'url'
-
 import {
-  LatestSupportedPHPVersion,
-  // SupportedPHPVersion,
-  SupportedPHPVersionsList,
-} from '@php-wasm/universal'
-
-import { NodePHP } from '@php-wasm/node'
-// import { spawn } from 'child_process'
+  PHP,
+  loadPHPRuntime,
+  createNodeFsMountHandler,
+  getPHPLoaderModule,
+} from '@expreva/php-wasm-8-4'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 export async function createPhp(options = {}) {
-  const { phpVersion = LatestSupportedPHPVersion } = options
-  if (!SupportedPHPVersionsList.includes(phpVersion)) {
-    throw new Error(`Unsupported PHP version ${phpVersion}`)
-  }
+  const version = '8.4'
 
-  const php = await NodePHP.load(phpVersion, {
-    emscriptenOptions: {
-      ENV: {
-        ...process.env,
-        TERM: 'xterm',
+  const { TMPDIR, ...envVariables } = process.env
+  const php = new PHP(
+    await loadPHPRuntime(await getPHPLoaderModule(version), {
+      emscriptenOptions: {
+        ENV: {
+          ...envVariables,
+          TERM: 'xterm',
+        },
       },
-    },
-  })
+    })
+  )
 
-  // php.useHostFilesystem()
-  php.mount(__dirname + '/parser', '/parser')
-
+  const vfsPath = '/internal/parser'
+  php.mkdir(vfsPath)
+  await php.mount(
+    vfsPath,
+    createNodeFsMountHandler(path.join(__dirname, 'parser'))
+  )
   php.parse = (...args) => parsePhp(php, ...args)
 
   return php
@@ -43,12 +40,9 @@ async function parsePhp(php, code) {
     code: `<?php
 include_once __DIR__ . '/parser/index.php';
 
-$code = <<<'CODE'
+echo json_encode(parse_php(<<<'CODE'
 ${code}
-CODE;
-
-$result = parse_php($code);
-echo json_encode($result);
+CODE));
 `,
   })
 
@@ -60,7 +54,7 @@ echo json_encode($result);
   try {
     const { parsed } = JSON.parse(result.text)
     return {
-      parsed
+      parsed,
     }
   } catch (error) {
     return {

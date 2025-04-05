@@ -25,21 +25,11 @@ const {
 console.log(parsed)
 ```
 
-#### Known limitations
-
-After using the PHP runtime instance, it is necessary to exit the process when done.
-
-```js
-// Exit to stop PHP process
-process.exit()
-```
-
 ## Abstract Syntax Tree
 
 See https://github.com/nikic/PHP-Parser/blob/master/doc/component/JSON_representation.markdown
 
 ## Included libraries
 
-- [PHP WebAssembly](https://github.com/WordPress/wordpress-playground/tree/trunk/packages/php-wasm/node)
-
-- [PHP-Parser in PHP](https://github.com/nikic/PHP-Parser)
+- [PHP-WASM](https://github.com/WordPress/wordpress-playground/tree/trunk/packages/php-wasm/node)
+- [PHP-Parser](https://github.com/nikic/PHP-Parser)

@@ -1,13 +1,20 @@
 <?php
 
-/** @param string $msg */
+/**
+ * Print a line of message
+ * @param string $msg
+ */
 function printLine($msg) {
+  // Regular comment
   echo $msg, "\n";
 }
 
+/**
+ * Class for testing
+ */
 class Test {
   /**
-   * Doc block title
+   * Class method title
    * 
    * @param key value
    */

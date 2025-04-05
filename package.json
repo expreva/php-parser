@@ -1,8 +1,9 @@
 {
   "name": "@expreva/php-parser",
   "type": "module",
-  "version": "1.0.0",
   "description": "Standalone library to parse PHP in Node.js using a PHP runtime compiled to WebAssembly",
+  "homepage": "https://github.com/expreva/php-parser",
+  "repository": "git@github.com:expreva/php-parser.git",
   "main": "index.js",
   "directories": {
     "lib": "lib"
@@ -18,6 +19,9 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@php-wasm/node": "^0.3.1"
+    "@expreva/php-wasm-8-4": "^1.0.28"
+  },
+  "devDependencies": {
+    "testra": "^2.1.5"
   }
 }
